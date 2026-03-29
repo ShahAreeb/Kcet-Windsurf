@@ -332,7 +332,8 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="relative rounded-3xl overflow-hidden aspect-video max-w-4xl mx-auto"
+            className="relative rounded-3xl overflow-hidden max-w-4xl mx-auto"
+            style={{ aspectRatio: '16/9', minHeight: '300px' }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-emerald-600/20" />
             <div className="absolute inset-0 flex items-center justify-center">
