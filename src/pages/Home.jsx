@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   GraduationCap, 
@@ -75,36 +74,20 @@ const notifications = [
 ];
 
 export default function Home() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
   return (
-    <div ref={containerRef} className="overflow-hidden">
+    <div className="overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center">
         <div className="absolute inset-0 grid-pattern opacity-30" />
         
-        <motion.div 
-          style={{ y, opacity }}
-          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+        {/* Hero Section - Zero Animation for Instant LCP */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 hero-content">
+          <div>
             <span className="inline-block px-4 py-2 rounded-full glass text-blue-400 text-sm font-medium mb-6">
               AICTE Approved Institution
             </span>
-          </motion.div>
+          </div>
 
-          {/* Hero Title - Optimized for LCP - renders immediately */}
           <h1 className="hero-title mb-6">
             <span className="text-white">Kashmir</span>
             <br />
@@ -113,22 +96,12 @@ export default function Home() {
             <span className="text-white">& Technology</span>
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="hero-subtitle max-w-3xl mx-auto mb-10"
-          >
+          <p className="hero-subtitle max-w-3xl mx-auto mb-10">
             Engineering Futures, Innovating Today. Located in the breathtaking Kashmir Valley,
             we provide world-class technical education with a commitment to excellence.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/admissions" className="btn-primary flex items-center space-x-2">
               <span>Apply Now</span>
               <ChevronRight className="w-5 h-5" />
@@ -137,8 +110,8 @@ export default function Home() {
               <Play className="w-5 h-5" />
               <span>Watch Campus Tour</span>
             </button>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Scroll Indicator */}
         <motion.div
