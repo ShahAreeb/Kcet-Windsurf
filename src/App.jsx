@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-import Hero3D from './components/Hero3D';
 import Home from './pages/Home';
 import About from './pages/About';
 import Academics from './pages/Academics';
@@ -13,12 +12,16 @@ import Facilities from './pages/Facilities';
 import Contact from './pages/Contact';
 import './index.css';
 
+// Lazy load 3D component to reduce LCP
+const Hero3D = lazy(() => import('./components/Hero3D'));
+
 function App() {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
+    // Reduced from 1500ms to 500ms for faster LCP
+    const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -40,7 +43,9 @@ function App() {
   return (
     <div className="relative min-h-screen bg-slate-900">
       <div className="canvas-container">
-        <Hero3D />
+        <Suspense fallback={null}>
+          <Hero3D />
+        </Suspense>
       </div>
 
       <Navigation />
