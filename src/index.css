@@ -215,6 +215,10 @@ body {
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.1;
+  content-visibility: auto;
+  contain: layout style paint;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 @media (min-width: 640px) {

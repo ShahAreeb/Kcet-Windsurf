@@ -104,18 +104,14 @@ export default function Home() {
             </span>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="hero-title mb-6"
-          >
+          {/* Hero Title - Optimized for LCP - renders immediately */}
+          <h1 className="hero-title mb-6">
             <span className="text-white">Kashmir</span>
             <br />
             <span className="gradient-text glow-text">College of Engineering</span>
             <br />
             <span className="text-white">& Technology</span>
-          </motion.h1>
+          </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
